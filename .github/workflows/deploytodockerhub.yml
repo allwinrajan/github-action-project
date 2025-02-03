@@ -16,5 +16,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: push docker image to docker hub
         run: |  
-          docker push rajanfac/web-build:latest
+          docker push rajanfac/web-build-2:latest
     
