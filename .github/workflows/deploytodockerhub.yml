@@ -1,0 +1,20 @@
+name: Build and Publish the Docker Image to Docker Hub
+on:
+  [workflow_dispatch]
+jobs:
+  publish_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repository
+        uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker build ./ -t rajanfac/web-build-2:latest 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: push docker image to docker hub
+        run: |  
+          docker push rajanfac/web-build:latest
+    
